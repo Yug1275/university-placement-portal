@@ -12,65 +12,50 @@ function Navbar() {
   };
 
   return (
-    <div style={styles.nav}>
+    <div className="navbar-nav">
       <h2>Placement Portal</h2>
 
-      <div style={styles.right}>
+      <div className="navbar-right">
         {!user ? (
           <>
-            <Link to="/login" style={styles.link}>Login</Link>
-            <Link to="/register" style={styles.link}>Signup</Link>
+            <Link to="/login" className="navbar-link">Login</Link>
+            <Link to="/register" className="navbar-link">Signup</Link>
           </>
         ) : (
           <>
             {/* Student links */}
             {user.role === "student" && (
               <>
-                <Link to="/jobs" style={styles.link}>Jobs</Link>
-                <Link to="/applications" style={styles.link}>My Applications</Link>
+                <Link to="/jobs" className="navbar-link">Jobs</Link>
+                <Link to="/applications" className="navbar-link">My Applications</Link>
               </>
             )}
 
             {/* Company links */}
             {user.role === "company" && (
               <>
-                <Link to="/post-job" style={styles.link}>Post Job</Link>
-                <Link to="/my-jobs" style={styles.link}>My Jobs</Link>
+                <Link to="/post-job" className="navbar-link">Post Job</Link>
+                <Link to="/my-jobs" className="navbar-link">My Jobs</Link>
+              </>
+            )}
+            {/* Admin links */}
+
+            {user.role === "admin" && (
+              <>
+                <Link to="/admin-dashboard" className="navbar-link">Dashboard</Link>
+                <Link to="/admin/users" className="navbar-link">Users</Link>
+                <Link to="/admin/companies" className="navbar-link">Companies</Link>
+                <Link to="/admin/jobs" className="navbar-link">Jobs</Link>
               </>
             )}
 
-            <span style={{ ...styles.link, opacity: 0.7 }}>Hi, {user.name}</span>
-            <button onClick={handleLogout} style={styles.button}>Logout</button>
+            <span className="navbar-link navbar-user">Hi, {user.name}</span>
+            <button onClick={handleLogout} className="navbar-button">Logout</button>
           </>
         )}
       </div>
     </div>
   );
 }
-
-const styles = {
-  nav: {
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
-    padding: "10px 20px",
-    background: "#111",
-    color: "#fff",
-  },
-  right: {
-    display: "flex",
-    alignItems: "center",
-  },
-  link: {
-    marginLeft: "15px",
-    color: "#fff",
-    textDecoration: "none",
-  },
-  button: {
-    marginLeft: "15px",
-    padding: "5px 10px",
-    cursor: "pointer",
-  },
-};
 
 export default Navbar;

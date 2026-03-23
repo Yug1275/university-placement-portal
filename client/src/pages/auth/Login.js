@@ -33,15 +33,15 @@ function Login() {
   };
 
   return (
-    <div style={styles.container}>
-      <form onSubmit={handleSubmit} style={styles.card}>
-        <h2 style={styles.title}>Welcome Back</h2>
+    <div className="login-container">
+      <form onSubmit={handleSubmit} className="login-card">
+        <h2 className="login-title">Welcome Back</h2>
 
         <input
           type="email"
           placeholder="Email"
           required
-          style={styles.input}
+          className="login-input"
           value={form.email}
           onChange={(e) =>
             setForm({ ...form, email: e.target.value })
@@ -52,57 +52,17 @@ function Login() {
           type="password"
           placeholder="Password"
           required
-          style={styles.input}
+          className="login-input"
           value={form.password}
           onChange={(e) =>
             setForm({ ...form, password: e.target.value })
           }
         />
 
-        <button type="submit" style={styles.button}>Login</button>
+        <button type="submit" className="login-button">Login</button>
       </form>
     </div>
   );
 }
-
-const styles = {
-  container: {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    height: "80vh",
-  },
-  card: {
-    width: "320px",
-    padding: "30px",
-    borderRadius: "20px",
-    background: "rgba(255,255,255,0.1)",
-    backdropFilter: "blur(15px)",
-    border: "1px solid rgba(255,255,255,0.2)",
-    boxShadow: "0 8px 32px rgba(0,0,0,0.3)",
-    display: "flex",
-    flexDirection: "column",
-    gap: "15px",
-  },
-  title: {
-    color: "#fff",
-    textAlign: "center",
-  },
-  input: {
-    padding: "10px",
-    borderRadius: "8px",
-    border: "none",
-    outline: "none",
-  },
-  button: {
-    padding: "10px",
-    borderRadius: "10px",
-    border: "none",
-    background: "#00c6ff",
-    color: "#fff",
-    cursor: "pointer",
-    fontWeight: "bold",
-  },
-};
 
 export default Login;

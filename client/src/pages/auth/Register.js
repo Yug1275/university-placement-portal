@@ -37,15 +37,15 @@ function Register() {
   };
 
   return (
-    <div style={styles.container}>
-      <form onSubmit={handleSubmit} style={styles.card}>
-        <h2 style={styles.title}>Create Account</h2>
+    <div className="register-container">
+      <form onSubmit={handleSubmit} className="register-card">
+        <h2 className="register-title">Create Account</h2>
 
         <input
           type="text"
           placeholder="Full Name"
           required
-          style={styles.input}
+          className="register-input"
           value={form.name}
           onChange={(e) => setForm({ ...form, name: e.target.value })}
         />
@@ -54,7 +54,7 @@ function Register() {
           type="email"
           placeholder="Email"
           required
-          style={styles.input}
+          className="register-input"
           value={form.email}
           onChange={(e) => setForm({ ...form, email: e.target.value })}
         />
@@ -63,14 +63,14 @@ function Register() {
           type="password"
           placeholder="Password"
           required
-          style={styles.input}
+          className="register-input"
           value={form.password}
           onChange={(e) => setForm({ ...form, password: e.target.value })}
         />
 
         {/* Role Selector */}
         <select
-          style={styles.input}
+          className="register-input"
           value={form.role}
           onChange={(e) => setForm({ ...form, role: e.target.value })}
         >
@@ -87,7 +87,7 @@ function Register() {
               step="0.1"
               min="0"
               max="10"
-              style={styles.input}
+              className="register-input"
               value={form.cgpa}
               onChange={(e) => setForm({ ...form, cgpa: e.target.value })}
             />
@@ -95,62 +95,19 @@ function Register() {
             <input
               type="text"
               placeholder="Skills (e.g. React, Node, MongoDB)"
-              style={styles.input}
+              className="register-input"
               value={form.skills}
               onChange={(e) => setForm({ ...form, skills: e.target.value })}
             />
           </>
         )}
 
-        <button type="submit" style={styles.button}>
+        <button type="submit" className="register-button">
           Register
         </button>
       </form>
     </div>
   );
 }
-
-const styles = {
-  container: {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    minHeight: "80vh",
-    padding: "20px",
-  },
-  card: {
-    width: "320px",
-    padding: "30px",
-    borderRadius: "20px",
-    background: "rgba(255,255,255,0.1)",
-    backdropFilter: "blur(15px)",
-    border: "1px solid rgba(255,255,255,0.2)",
-    boxShadow: "0 8px 32px rgba(0,0,0,0.3)",
-    display: "flex",
-    flexDirection: "column",
-    gap: "15px",
-  },
-  title: {
-    color: "#fff",
-    textAlign: "center",
-  },
-  input: {
-    padding: "10px",
-    borderRadius: "8px",
-    border: "none",
-    outline: "none",
-    fontSize: "14px",
-  },
-  button: {
-    padding: "10px",
-    borderRadius: "10px",
-    border: "none",
-    background: "#00c6ff",
-    color: "#fff",
-    cursor: "pointer",
-    fontWeight: "bold",
-    fontSize: "15px",
-  },
-};
 
 export default Register;

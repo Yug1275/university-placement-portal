@@ -36,24 +36,24 @@ function Applicants() {
     }
   };
 
-  const statusColor = {
-    applied: "#aaa",
-    shortlisted: "#00c6ff",
-    selected: "#4caf50",
-    rejected: "#ff4f4f",
+  const statusClass = {
+    applied: "applicants-status-applied",
+    shortlisted: "applicants-status-shortlisted",
+    selected: "applicants-status-selected",
+    rejected: "applicants-status-rejected",
   };
 
   return (
-    <div style={styles.container}>
-      <h2 style={styles.heading}>Applicants</h2>
+    <div className="applicants-container">
+      <h2 className="applicants-heading">Applicants</h2>
 
       {apps.length === 0 && (
-        <p style={{ color: "#fff" }}>No applicants yet.</p>
+        <p className="applicants-empty">No applicants yet.</p>
       )}
 
-      <div style={styles.grid}>
+      <div className="applicants-grid">
         {apps.map((app) => (
-          <div key={app._id} style={styles.card}>
+          <div key={app._id} className="applicants-card">
             <h3>{app.student?.name || "Unknown"}</h3>
             <p>📧 {app.student?.email || "N/A"}</p>
             <p>🎓 CGPA: {app.student?.cgpa ?? "N/A"}</p>
@@ -62,25 +62,25 @@ function Applicants() {
               : "N/A"}
             </p>
 
-            <p style={{ color: statusColor[app.status], fontWeight: "bold" }}>
+            <p className={`applicants-status ${statusClass[app.status]}`}>
               Status: {app.status}
             </p>
 
-            <div style={styles.btnRow}>
+            <div className="applicants-btn-row">
               <button
-                style={{ ...styles.btn, background: "#00c6ff" }}
+                className="applicants-btn applicants-btn-shortlist"
                 onClick={() => updateStatus(app._id, "shortlisted")}
               >
                 Shortlist
               </button>
               <button
-                style={{ ...styles.btn, background: "#4caf50" }}
+                className="applicants-btn applicants-btn-select"
                 onClick={() => updateStatus(app._id, "selected")}
               >
                 Select
               </button>
               <button
-                style={{ ...styles.btn, background: "#ff4f4f" }}
+                className="applicants-btn applicants-btn-reject"
                 onClick={() => updateStatus(app._id, "rejected")}
               >
                 Reject
@@ -92,39 +92,5 @@ function Applicants() {
     </div>
   );
 }
-
-const styles = {
-  container: { padding: "20px" },
-  heading: { color: "#fff", marginBottom: "20px" },
-  grid: {
-    display: "grid",
-    gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
-    gap: "20px",
-  },
-  card: {
-    background: "rgba(255,255,255,0.1)",
-    borderRadius: "15px",
-    padding: "20px",
-    backdropFilter: "blur(10px)",
-    border: "1px solid rgba(255,255,255,0.2)",
-    boxShadow: "0 8px 32px rgba(0,0,0,0.3)",
-    color: "#fff",
-  },
-  btnRow: {
-    display: "flex",
-    gap: "8px",
-    marginTop: "12px",
-    flexWrap: "wrap"
-  },
-  btn: {
-    padding: "6px 10px",
-    borderRadius: "8px",
-    border: "none",
-    color: "#fff",
-    cursor: "pointer",
-    fontWeight: "bold",
-    fontSize: "13px",
-  },
-};
 
 export default Applicants;

@@ -14,6 +14,10 @@ import CompanyDashboard from "./pages/company/CompanyDashboard";
 import PostJob from "./pages/company/PostJob";
 import MyJobs from "./pages/company/MyJobs";
 import Applicants from "./pages/company/Applicants";
+import AdminDashboard from "./pages/admin/AdminDashboard";
+import ManageUsers from "./pages/admin/ManageUsers";
+import ManageCompanies from "./pages/admin/ManageCompanies";
+import ManageJobs from "./pages/admin/ManageJobs";
 
 function App() {
   return (
@@ -31,6 +35,10 @@ function App() {
           <Route path="/post-job" element={<ProtectedRoute><PostJob /></ProtectedRoute>} />
           <Route path="/my-jobs" element={<ProtectedRoute><MyJobs /></ProtectedRoute>} />
           <Route path="/applicants/:jobId" element={<ProtectedRoute><Applicants /></ProtectedRoute>} />
+          <Route path="/admin-dashboard" element={<ProtectedRoute><AdminDashboard /></ProtectedRoute>} />
+          <Route path="/admin/users" element={<ProtectedRoute><ManageUsers /></ProtectedRoute>} />
+          <Route path="/admin/companies" element={<ProtectedRoute><ManageCompanies /></ProtectedRoute>} />
+          <Route path="/admin/jobs" element={<ProtectedRoute><ManageJobs /></ProtectedRoute>} />
 
         </Routes>
       </div>

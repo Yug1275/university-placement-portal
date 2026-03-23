@@ -2,22 +2,12 @@ import React from "react";
 
 function Sidebar() {
   return (
-    <div style={styles.sidebar}>
+    <div className="sidebar-sidebar">
       <p>Dashboard</p>
       <p>Jobs</p>
       <p>Profile</p>
     </div>
   );
 }
-
-const styles = {
-  sidebar: {
-    width: "200px",
-    height: "100vh",
-    background: "#111",
-    color: "#fff",
-    padding: "20px",
-  },
-};
 
 export default Sidebar;

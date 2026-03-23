@@ -13,6 +13,392 @@ body {
   min-height: 100vh;
 }
 
-h2{
-  
+.navbar-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background: #111;
+  color: #fff;
 }
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-link {
+  margin-left: 15px;
+  color: #fff;
+  text-decoration: none;
+}
+
+.navbar-user {
+  opacity: 0.7;
+}
+
+.navbar-button {
+  margin-left: 15px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.footer-container {
+  width: 100%;
+  background: #111;
+  color: #fff;
+  text-align: center;
+  padding: 12px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+}
+
+.sidebar-sidebar {
+  width: 200px;
+  height: 100vh;
+  background: #111;
+  color: #fff;
+  padding: 20px;
+}
+
+.login-container,
+.register-container,
+.company-dashboard-container,
+.post-job-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.login-container,
+.company-dashboard-container {
+  height: 80vh;
+}
+
+.register-container {
+  min-height: 80vh;
+}
+
+.post-job-container {
+  min-height: 90vh;
+}
+
+.login-card,
+.register-card {
+  width: 320px;
+  padding: 30px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.login-title,
+.register-title {
+  color: #fff;
+  text-align: center;
+}
+
+.login-input,
+.register-input,
+.post-job-input {
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  font-size: 14px;
+}
+
+.login-button,
+.register-button,
+.post-job-button,
+.company-dashboard-btn,
+.jobs-button,
+.my-jobs-btn-view,
+.my-jobs-btn-delete,
+.applicants-btn,
+.manage-users-delete-btn,
+.manage-companies-btn,
+.manage-jobs-delete-btn {
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.login-button,
+.register-button,
+.post-job-button,
+.company-dashboard-btn,
+.my-jobs-btn-view {
+  background: #00c6ff;
+}
+
+.jobs-button {
+  margin-top: 10px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: #00bcd4;
+}
+
+.my-jobs-btn-view,
+.my-jobs-btn-delete,
+.manage-users-delete-btn,
+.manage-companies-btn,
+.manage-jobs-delete-btn {
+  padding: 7px 12px;
+  border-radius: 8px;
+}
+
+.my-jobs-btn-delete,
+.manage-users-delete-btn,
+.manage-jobs-delete-btn {
+  background: #ff4f4f;
+}
+
+.company-dashboard-card,
+.post-job-card,
+.jobs-card,
+.applications-card,
+.my-jobs-card,
+.applicants-card,
+.admin-dashboard-card,
+.manage-users-card,
+.manage-companies-card,
+.manage-jobs-card {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  padding: 20px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  color: #fff;
+}
+
+.company-dashboard-card,
+.post-job-card {
+  border-radius: 20px;
+  backdrop-filter: blur(15px);
+}
+
+.company-dashboard-card,
+.post-job-card,
+.admin-dashboard-card {
+  text-align: center;
+}
+
+.company-dashboard-card,
+.post-job-card {
+  width: 380px;
+}
+
+.company-dashboard-card {
+  padding: 35px;
+}
+
+.post-job-card {
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.company-dashboard-title,
+.post-job-title {
+  margin-bottom: 10px;
+  color: #fff;
+}
+
+.post-job-title {
+  margin-bottom: 5px;
+}
+
+.company-dashboard-sub {
+  margin-bottom: 25px;
+  opacity: 0.8;
+}
+
+.company-dashboard-btn-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.company-dashboard-btn {
+  text-decoration: none;
+}
+
+.jobs-container,
+.applications-container,
+.my-jobs-container,
+.applicants-container,
+.admin-dashboard-container,
+.manage-users-container,
+.manage-companies-container,
+.manage-jobs-container {
+  padding: 20px;
+}
+
+.jobs-heading,
+.applications-heading,
+.my-jobs-heading,
+.applicants-heading,
+.admin-dashboard-heading,
+.manage-users-heading,
+.manage-companies-heading,
+.manage-jobs-heading {
+  color: #fff;
+  margin-bottom: 20px;
+}
+
+.jobs-grid,
+.applications-grid,
+.manage-users-grid,
+.manage-companies-grid,
+.manage-jobs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.my-jobs-grid,
+.applicants-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+.my-jobs-empty,
+.applicants-empty,
+.manage-users-empty,
+.manage-companies-empty,
+.manage-jobs-empty {
+  color: #fff;
+}
+
+.my-jobs-description,
+.manage-jobs-description {
+  opacity: 0.7;
+  font-size: 13px;
+}
+
+.my-jobs-btn-row,
+.manage-companies-btn-row {
+  display: flex;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.applicants-btn-row {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+  flex-wrap: wrap;
+}
+
+.applicants-status,
+.manage-users-role,
+.manage-companies-status {
+  font-weight: bold;
+}
+
+.applicants-status-applied {
+  color: #aaa;
+}
+
+.applicants-status-shortlisted {
+  color: #00c6ff;
+}
+
+.applicants-status-selected,
+.manage-companies-status-approved,
+.manage-users-role-company,
+.admin-dashboard-stat-green {
+  color: #4caf50;
+}
+
+.applicants-status-rejected,
+.manage-companies-status-rejected {
+  color: #ff4f4f;
+}
+
+.applicants-btn {
+  padding: 6px 10px;
+  border-radius: 8px;
+  font-size: 13px;
+}
+
+.applicants-btn-shortlist {
+  background: #00c6ff;
+}
+
+.applicants-btn-select {
+  background: #4caf50;
+}
+
+.applicants-btn-reject {
+  background: #ff4f4f;
+}
+
+.manage-users-role-student,
+.admin-dashboard-stat-blue {
+  color: #00c6ff;
+}
+
+.manage-users-role-admin,
+.admin-dashboard-stat-pink {
+  color: #e91e63;
+}
+
+.manage-companies-status-pending,
+.admin-dashboard-stat-orange {
+  color: #ff9800;
+}
+
+.manage-companies-btn {
+  border: none;
+}
+
+.manage-companies-btn-approve {
+  background: #4caf50;
+}
+
+.manage-companies-btn-reject {
+  background: #ff4f4f;
+}
+
+.admin-dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.admin-dashboard-stat {
+  font-size: 32px;
+}
+
+.admin-dashboard-nav-grid {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.admin-dashboard-nav-btn {
+  padding: 12px 20px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+

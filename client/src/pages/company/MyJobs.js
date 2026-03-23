@@ -31,29 +31,29 @@ function MyJobs() {
   };
 
   return (
-    <div style={styles.container}>
-      <h2 style={styles.heading}>My Posted Jobs</h2>
+    <div className="my-jobs-container">
+      <h2 className="my-jobs-heading">My Posted Jobs</h2>
 
       {jobs.length === 0 && (
-        <p style={{ color: "#fff" }}>No jobs posted yet.</p>
+        <p className="my-jobs-empty">No jobs posted yet.</p>
       )}
 
-      <div style={styles.grid}>
+      <div className="my-jobs-grid">
         {jobs.map((job) => (
-          <div key={job._id} style={styles.card}>
+          <div key={job._id} className="my-jobs-card">
             <h3>{job.title}</h3>
             <p>{job.location} | {job.salary}</p>
-            <p style={{ opacity: 0.7, fontSize: "13px" }}>{job.description}</p>
+            <p className="my-jobs-description">{job.description}</p>
 
-            <div style={styles.btnRow}>
+            <div className="my-jobs-btn-row">
               <button
-                style={styles.btnView}
+                className="my-jobs-btn-view"
                 onClick={() => navigate(`/applicants/${job._id}`)}
               >
                 View Applicants
               </button>
               <button
-                style={styles.btnDelete}
+                className="my-jobs-btn-delete"
                 onClick={() => deleteJob(job._id)}
               >
                 Delete
@@ -65,43 +65,5 @@ function MyJobs() {
     </div>
   );
 }
-
-const styles = {
-  container: { padding: "20px" },
-  heading: { color: "#fff", marginBottom: "20px" },
-  grid: {
-    display: "grid",
-    gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
-    gap: "20px",
-  },
-  card: {
-    background: "rgba(255,255,255,0.1)",
-    borderRadius: "15px",
-    padding: "20px",
-    backdropFilter: "blur(10px)",
-    border: "1px solid rgba(255,255,255,0.2)",
-    boxShadow: "0 8px 32px rgba(0,0,0,0.3)",
-    color: "#fff",
-  },
-  btnRow: { display: "flex", gap: "10px", marginTop: "12px" },
-  btnView: {
-    padding: "7px 12px",
-    borderRadius: "8px",
-    background: "#00c6ff",
-    color: "#fff",
-    border: "none",
-    cursor: "pointer",
-    fontWeight: "bold",
-  },
-  btnDelete: {
-    padding: "7px 12px",
-    borderRadius: "8px",
-    background: "#ff4f4f",
-    color: "#fff",
-    border: "none",
-    cursor: "pointer",
-    fontWeight: "bold",
-  },
-};
 
 export default MyJobs;

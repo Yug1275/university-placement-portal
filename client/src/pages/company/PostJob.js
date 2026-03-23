@@ -39,16 +39,16 @@ function PostJob() {
   ];
 
   return (
-    <div style={styles.container}>
-      <form onSubmit={handleSubmit} style={styles.card}>
-        <h2 style={styles.title}>Post a New Job</h2>
+    <div className="post-job-container">
+      <form onSubmit={handleSubmit} className="post-job-card">
+        <h2 className="post-job-title">Post a New Job</h2>
 
         {fields.map((f) => (
           <input
             key={f.key}
             placeholder={f.placeholder}
             required
-            style={styles.input}
+            className="post-job-input"
             value={form[f.key]}
             onChange={(e) => setForm({ ...form, [f.key]: e.target.value })}
           />
@@ -57,55 +57,15 @@ function PostJob() {
         <input
           type="date"
           required
-          style={styles.input}
+          className="post-job-input"
           value={form.deadline}
           onChange={(e) => setForm({ ...form, deadline: e.target.value })}
         />
 
-        <button type="submit" style={styles.button}>Post Job</button>
+        <button type="submit" className="post-job-button">Post Job</button>
       </form>
     </div>
   );
 }
-
-const styles = {
-  container: {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    minHeight: "90vh",
-    padding: "20px",
-  },
-  card: {
-    width: "380px",
-    padding: "30px",
-    borderRadius: "20px",
-    background: "rgba(255,255,255,0.1)",
-    backdropFilter: "blur(15px)",
-    border: "1px solid rgba(255,255,255,0.2)",
-    boxShadow: "0 8px 32px rgba(0,0,0,0.3)",
-    display: "flex",
-    flexDirection: "column",
-    gap: "12px",
-  },
-  title: { color: "#fff", textAlign: "center", marginBottom: "5px" },
-  input: {
-    padding: "10px",
-    borderRadius: "8px",
-    border: "none",
-    outline: "none",
-    fontSize: "14px",
-  },
-  button: {
-    padding: "10px",
-    borderRadius: "10px",
-    border: "none",
-    background: "#00c6ff",
-    color: "#fff",
-    cursor: "pointer",
-    fontWeight: "bold",
-    fontSize: "15px",
-  },
-};
 
 export default PostJob;
