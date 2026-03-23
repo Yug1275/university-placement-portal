@@ -26,7 +26,7 @@ function Register() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "10px", width: "250px", margin: "auto" }}>
       <input
         placeholder="Name"
         value={form.name}
