@@ -15,7 +15,18 @@ function Login() {
     try {
       const { data } = await API.post("/auth/login", form);
       login(data);
-      navigate("/dashboard");
+
+      // ✅ Role-based redirect
+      if (data.role === "company") {
+        navigate("/company-dashboard");
+      } else if (data.role === "student") {
+        navigate("/dashboard");
+      } else if (data.role === "admin") {
+        navigate("/admin-dashboard");
+      } else {
+        navigate("/");
+      }
+
     } catch (err) {
       alert(err?.response?.data?.message || "Error");
     }
@@ -31,6 +42,7 @@ function Login() {
           placeholder="Email"
           required
           style={styles.input}
+          value={form.email}
           onChange={(e) =>
             setForm({ ...form, email: e.target.value })
           }
@@ -41,12 +53,13 @@ function Login() {
           placeholder="Password"
           required
           style={styles.input}
+          value={form.password}
           onChange={(e) =>
             setForm({ ...form, password: e.target.value })
           }
         />
 
-        <button style={styles.button}>Login</button>
+        <button type="submit" style={styles.button}>Login</button>
       </form>
     </div>
   );

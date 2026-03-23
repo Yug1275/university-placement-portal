@@ -23,14 +23,24 @@ function Navbar() {
           </>
         ) : (
           <>
-            {/* ✅ Student Links */}
-            <Link to="/jobs" style={styles.link}>Jobs</Link>
-            <Link to="/applications" style={styles.link}>My Applications</Link>
+            {/* Student links */}
+            {user.role === "student" && (
+              <>
+                <Link to="/jobs" style={styles.link}>Jobs</Link>
+                <Link to="/applications" style={styles.link}>My Applications</Link>
+              </>
+            )}
 
-            {/* ✅ Logout */}
-            <button onClick={handleLogout} style={styles.button}>
-              Logout
-            </button>
+            {/* Company links */}
+            {user.role === "company" && (
+              <>
+                <Link to="/post-job" style={styles.link}>Post Job</Link>
+                <Link to="/my-jobs" style={styles.link}>My Jobs</Link>
+              </>
+            )}
+
+            <span style={{ ...styles.link, opacity: 0.7 }}>Hi, {user.name}</span>
+            <button onClick={handleLogout} style={styles.button}>Logout</button>
           </>
         )}
       </div>

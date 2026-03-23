@@ -1,6 +1,6 @@
 const Application = require("../models/Application");
 
-// Apply to job
+// Student: Apply to a job
 exports.applyJob = async (req, res) => {
   try {
     const { jobId } = req.body;
@@ -25,13 +25,46 @@ exports.applyJob = async (req, res) => {
   }
 };
 
-// Get student's applications
+// Student: Get my applications
 exports.getMyApplications = async (req, res) => {
   try {
     const apps = await Application.find({ student: req.user._id })
       .populate("job");
-
     res.json(apps);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+// Company: Get all applicants for a specific job
+exports.getApplicants = async (req, res) => {
+  try {
+    const { jobId } = req.params;
+
+    const applications = await Application.find({ job: jobId })
+      .populate("student", "name email cgpa branch skills");
+
+    res.json(applications);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+// Company: Update application status (shortlist / reject / select)
+exports.updateStatus = async (req, res) => {
+  try {
+    const { status } = req.body;
+
+    const application = await Application.findById(req.params.id);
+
+    if (!application) {
+      return res.status(404).json({ message: "Application not found" });
+    }
+
+    application.status = status;
+    await application.save();
+
+    res.json({ message: "Status updated", application });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

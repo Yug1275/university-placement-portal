@@ -15,7 +15,7 @@ const userSchema = new mongoose.Schema(
     // Student fields
     cgpa: Number,
     branch: String,
-    skills: [String],
+    skills: { type: [String], default: [] },
     resume: String,
 
     // Company fields

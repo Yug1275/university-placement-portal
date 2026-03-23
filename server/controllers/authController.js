@@ -12,7 +12,7 @@ const generateToken = (id) => {
 // Register
 exports.registerUser = async (req, res) => {
   try {
-    const { name, email, password, role } = req.body;
+    const { name, email, password, role, cgpa, skills, companyName } = req.body;
 
     const userExists = await User.findOne({ email });
     if (userExists) {
@@ -23,18 +23,35 @@ exports.registerUser = async (req, res) => {
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
 
-    const user = await User.create({
+    // ✅ Build user object based on role
+    const userData = {
       name,
       email,
       password: hashedPassword,
       role,
-    });
+    };
+
+    // ✅ Add student fields if role is student
+    if (role === "student") {
+      userData.cgpa = cgpa || 0;
+      userData.skills = skills || [];
+    }
+
+    // ✅ Add company fields if role is company
+    if (role === "company") {
+      userData.companyName = companyName || name;
+    }
+
+    const user = await User.create(userData);
 
     res.status(201).json({
       _id: user._id,
       name: user.name,
       email: user.email,
       role: user.role,
+      cgpa: user.cgpa,
+      skills: user.skills,
+      companyName: user.companyName,
       token: generateToken(user._id),
     });
   } catch (error) {
