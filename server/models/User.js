@@ -21,6 +21,8 @@ const userSchema = new mongoose.Schema(
     // Company fields
     companyName: String,
     approved: { type: Boolean, default: false },
+
+    profileImage: { type: String, default: "" },
   },
   { timestamps: true }
 );
