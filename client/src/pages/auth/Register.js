@@ -41,6 +41,16 @@ function Register() {
       <form onSubmit={handleSubmit} className="register-card">
         <h2 className="register-title">Create Account</h2>
 
+        {/* Role Selector */}
+        <select
+          className="register-input"
+          value={form.role}
+          onChange={(e) => setForm({ ...form, role: e.target.value })}
+        >
+          <option value="student">Student</option>
+          <option value="company">Company</option>
+        </select>
+
         <input
           type="text"
           placeholder="Full Name"
@@ -68,15 +78,7 @@ function Register() {
           onChange={(e) => setForm({ ...form, password: e.target.value })}
         />
 
-        {/* Role Selector */}
-        <select
-          className="register-input"
-          value={form.role}
-          onChange={(e) => setForm({ ...form, role: e.target.value })}
-        >
-          <option value="student">Student</option>
-          <option value="company">Company</option>
-        </select>
+        
 
         {/* ✅ Student-only fields */}
         {form.role === "student" && (
