@@ -80,7 +80,7 @@ function Register() {
 
         
 
-        {/* ✅ Student-only fields */}
+        {/*  Student-only fields */}
         {form.role === "student" && (
           <>
             <input
