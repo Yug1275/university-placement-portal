@@ -8,7 +8,7 @@ function Navbar() {
   const [showProfile, setShowProfile] = useState(false);
 
   const imageUrl = user?.profileImage
-    ? `http://localhost:5000${user.profileImage}`
+    ? (user.profileImage.startsWith("http") ? user.profileImage : `http://localhost:5000${user.profileImage.startsWith('/') ? '' : '/'}${user.profileImage}`)
     : null;
 
   return (
@@ -37,6 +37,7 @@ function Navbar() {
 
               {user.role === "company" && (
                 <>
+                  <Link to="/company-dashboard" className="navbar-link">Dashboard</Link>
                   <Link to="/post-job" className="navbar-link">Post Job</Link>
                   <Link to="/my-jobs" className="navbar-link">My Jobs</Link>
                 </>
@@ -51,17 +52,16 @@ function Navbar() {
                 </>
               )}
 
-              {/* Profile Avatar */}
               <div
                 className="navbar-avatar-wrapper"
                 onClick={() => setShowProfile(true)}
                 title="My Profile"
               >
                 {imageUrl ? (
-                  <img src={imageUrl} alt="profile" className="navbar-avatar-img" />
+                  <img src={imageUrl} alt="profile" className="navbar-avatar-img" style={{ width: "100%", height: "100%", objectFit: "cover", borderRadius: "50%" }} />
                 ) : (
                   <div className="navbar-avatar-fallback">
-                    {user.name?.charAt(0).toUpperCase()}
+                    {(user?.companyName || user?.name || "?").charAt(0).toUpperCase()}
                   </div>
                 )}
               </div>

@@ -1796,3 +1796,11 @@ body::before {
   border-radius: 12px;
   border: 1px dashed rgba(255, 255, 255, 0.1);
 }
+
+/* =========================================
+   STEP 5: COMPANY DASHBOARD
+   ========================================= */
+
+.company-welcome {
+  border-left-color: #7b68ee !important; /* unique purple aesthetic for company */
+}
