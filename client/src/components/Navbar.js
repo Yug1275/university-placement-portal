@@ -29,6 +29,7 @@ function Navbar() {
             <>
               {user.role === "student" && (
                 <>
+                  <Link to="/dashboard" className="navbar-link">Dashboard</Link>
                   <Link to="/jobs" className="navbar-link">Jobs</Link>
                   <Link to="/applications" className="navbar-link">My Applications</Link>
                 </>
