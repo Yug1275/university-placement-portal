@@ -1,13 +1,17 @@
 import React, { useState } from "react";
 import API from "../../services/api";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 function Register() {
+  const [searchParams] = useSearchParams();
+  const defaultRole = searchParams.get("role") || "student";
+  const hideRoleSelection = !!searchParams.get("role");
+
   const [form, setForm] = useState({
     name: "",
     email: "",
     password: "",
-    role: "student",
+    role: defaultRole,
     cgpa: "",
     skills: "",
   });
@@ -42,14 +46,16 @@ function Register() {
         <h2 className="register-title">Create Account</h2>
 
         {/* Role Selector */}
-        <select
-          className="register-input"
-          value={form.role}
-          onChange={(e) => setForm({ ...form, role: e.target.value })}
-        >
-          <option value="student">Student</option>
-          <option value="company">Company</option>
-        </select>
+        {!hideRoleSelection && (
+          <select
+            className="register-input"
+            value={form.role}
+            onChange={(e) => setForm({ ...form, role: e.target.value })}
+          >
+            <option value="student">Student</option>
+            <option value="company">Company</option>
+          </select>
+        )}
 
         <input
           type="text"

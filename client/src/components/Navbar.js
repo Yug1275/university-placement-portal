@@ -14,11 +14,14 @@ function Navbar() {
   return (
     <>
       <nav className="navbar-nav">
-        <h2>Placement Portal</h2>
+        <Link to="/" className="navbar-brand-link">
+          <h2>Placement Portal</h2>
+        </Link>
 
         <div className="navbar-right">
           {!user ? (
             <>
+              <Link to="/" className="navbar-link">Home</Link>
               <Link to="/login" className="navbar-link">Login</Link>
               <Link to="/register" className="navbar-link">Signup</Link>
             </>
