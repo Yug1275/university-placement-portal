@@ -93,7 +93,7 @@ function Home() {
       {/* Homepage Footer */}
       <footer className="home-footer glass-card">
         <div className="footer-content">
-          <p className="developer-credits">Developed by <span className="gradient-text">Yug Patel</span></p>
+          <p className="developer-credits">Developed by <span className="gradient-text">Yug Patel & Meet Prajapati</span></p>
         </div>
       </footer>
     </div>
