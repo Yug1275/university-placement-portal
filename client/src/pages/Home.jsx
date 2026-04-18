@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../context/AuthContext";
 
 function Home() {
+  const { user } = useContext(AuthContext);
+
   return (
     <div className="home-container">
       {/* Floating Animated Background Elements */}
@@ -17,10 +20,12 @@ function Home() {
         <p className="hero-subtitle">
           Connect with top companies, track your applications, and land your dream job right from campus.
         </p>
-        <div className="hero-ctas">
-          <Link to="/register?role=student" className="btn-primary">Get Started as Student</Link>
-          <Link to="/register?role=company" className="btn-secondary">Post a Job</Link>
-        </div>
+        {!user && (
+          <div className="hero-ctas">
+            <Link to="/register?role=student" className="btn-primary">Get Started as Student</Link>
+            <Link to="/register?role=company" className="btn-secondary">Post a Job</Link>
+          </div>
+        )}
       </section>
 
       {/* Stats Section */}
