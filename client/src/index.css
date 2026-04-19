@@ -37,7 +37,7 @@ body {
   align-items: center;
   padding: 0 32px;
   height: 64px;
-  background: rgba(255, 255, 255, 0.92);
+  background: #F1F5F9;
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid #E2E8F0;
@@ -1246,7 +1246,7 @@ body {
 /* ── Hero Section — Full-Width Light Purple Layer ── */
 .hero-section {
   width: 100%;
-  background: linear-gradient(135deg, #F3F0FF 0%, #EBF0FF 60%, #F0F4FF 100%);
+  background: #DAD1FD;
   border-bottom: 1px solid #DDD6FE;
   position: relative;
   overflow: hidden;

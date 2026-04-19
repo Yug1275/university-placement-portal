@@ -42,18 +42,13 @@ function Footer() {
             <h4 className="footer-col-heading">Connect</h4>
             <ul className="footer-links-list">
               <li>
-                <a href="https://github.com" target="_blank" rel="noreferrer" className="footer-link footer-social-link">
-                  <span className="footer-social-icon">🐙</span> GitHub
+                <a href="https://github.com/Yug1275/university-placement-portal.git" target="_blank" rel="noreferrer" className="footer-link footer-social-link">
+                  <span className="footer-social-icon"></span> GitHub
                 </a>
               </li>
               <li>
-                <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="footer-link footer-social-link">
-                  <span className="footer-social-icon">💼</span> LinkedIn
-                </a>
-              </li>
-              <li>
-                <a href="mailto:support@placementportal.com" className="footer-link footer-social-link">
-                  <span className="footer-social-icon">✉️</span> Email
+                <a href="https://www.linkedin.com/in/yugpatel040205/" target="_blank" rel="noreferrer" className="footer-link footer-social-link">
+                  <span className="footer-social-icon"></span> LinkedIn
                 </a>
               </li>
             </ul>

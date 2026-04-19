@@ -10,9 +10,7 @@ function Home() {
 
       {/* ── Hero Section ── */}
       <section className="hero-section">
-        {/* Decorative soft blobs inside hero */}
-        <div className="hero-blob hero-blob-1"></div>
-        <div className="hero-blob hero-blob-2"></div>
+        
 
         <div className="hero-inner">
           {/* Left: Text */}
@@ -26,14 +24,16 @@ function Home() {
               Connect with top companies, track your applications, and land your
               dream job — all from one unified campus portal.
             </p>
-            <div className="hero-ctas">
-              <Link to="/register?role=student" className="btn-primary">
-                Get Started as Student
-              </Link>
-              <Link to="/register?role=company" className="btn-secondary">
-                Post a Job
-              </Link>
-            </div>
+            {!user && (
+              <div className="hero-ctas">
+                <Link to="/register?role=student" className="btn-primary">
+                  Get Started as Student
+                </Link>
+                <Link to="/register?role=company" className="btn-secondary">
+                  Post a Job
+                </Link>
+              </div>
+            )}
           </div>
 
           {/* Right: Static hero image */}
