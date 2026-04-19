@@ -22,29 +22,28 @@ import ManageJobs from "./pages/admin/ManageJobs";
 function App() {
   return (
     <Router>
-      <Navbar />
-      <div style={{ paddingBottom: "50px" }}>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/jobs" element={<ProtectedRoute><Jobs /></ProtectedRoute>} />
-          <Route path="/applications" element={<ProtectedRoute><Applications /></ProtectedRoute>} />
-          <Route path="/company-dashboard" element={<ProtectedRoute><CompanyDashboard /></ProtectedRoute>} />
-          <Route path="/post-job" element={<ProtectedRoute><PostJob /></ProtectedRoute>} />
-          <Route path="/my-jobs" element={<ProtectedRoute><MyJobs /></ProtectedRoute>} />
-          <Route path="/applicants/:jobId" element={<ProtectedRoute><Applicants /></ProtectedRoute>} />
-          <Route path="/admin-dashboard" element={<ProtectedRoute><AdminDashboard /></ProtectedRoute>} />
-          <Route path="/admin/users" element={<ProtectedRoute><ManageUsers /></ProtectedRoute>} />
-          <Route path="/admin/companies" element={<ProtectedRoute><ManageCompanies /></ProtectedRoute>} />
-          <Route path="/admin/jobs" element={<ProtectedRoute><ManageJobs /></ProtectedRoute>} />
-
-        </Routes>
+      <div className="app-wrapper">
+        <Navbar />
+        <main className="app-main">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/jobs" element={<ProtectedRoute><Jobs /></ProtectedRoute>} />
+            <Route path="/applications" element={<ProtectedRoute><Applications /></ProtectedRoute>} />
+            <Route path="/company-dashboard" element={<ProtectedRoute><CompanyDashboard /></ProtectedRoute>} />
+            <Route path="/post-job" element={<ProtectedRoute><PostJob /></ProtectedRoute>} />
+            <Route path="/my-jobs" element={<ProtectedRoute><MyJobs /></ProtectedRoute>} />
+            <Route path="/applicants/:jobId" element={<ProtectedRoute><Applicants /></ProtectedRoute>} />
+            <Route path="/admin-dashboard" element={<ProtectedRoute><AdminDashboard /></ProtectedRoute>} />
+            <Route path="/admin/users" element={<ProtectedRoute><ManageUsers /></ProtectedRoute>} />
+            <Route path="/admin/companies" element={<ProtectedRoute><ManageCompanies /></ProtectedRoute>} />
+            <Route path="/admin/jobs" element={<ProtectedRoute><ManageJobs /></ProtectedRoute>} />
+          </Routes>
+        </main>
+        <Footer />
       </div>
-
-      <Footer />
-
     </Router>
   );
 }
