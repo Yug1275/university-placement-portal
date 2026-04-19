@@ -92,7 +92,7 @@ function ProfilePanel({ user, onClose, onUpdate }) {
     }
   };
 
-  const API_BASE = import.meta.env.VITE_API_URL ? import.meta.env.VITE_API_URL.replace("/api", "") : "http://localhost:5000";
+  const API_BASE = import.meta.env.VITE_API_URL ? import.meta.env.VITE_API_URL.replace("/api", "") : "https://university-placement-portal-production.up.railway.app";
   
   const imageUrl = imagePreview
     ? imagePreview
