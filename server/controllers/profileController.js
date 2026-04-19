@@ -39,9 +39,7 @@ exports.updateProfile = async (req, res) => {
 
     // Update profile image if uploaded
     if (req.file) {
-      // Convert buffer directly to a base64 string
       const base64Image = req.file.buffer.toString("base64");
-      // Save it directly as a Data URI 
       user.profileImage = `data:${req.file.mimetype};base64,${base64Image}`;
     }
 

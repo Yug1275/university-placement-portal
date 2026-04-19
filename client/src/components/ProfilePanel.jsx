@@ -92,10 +92,14 @@ function ProfilePanel({ user, onClose, onUpdate }) {
     }
   };
 
+  const API_BASE = import.meta.env.VITE_API_URL ? import.meta.env.VITE_API_URL.replace("/api", "") : "http://localhost:5000";
+  
   const imageUrl = imagePreview
     ? imagePreview
     : profile?.profileImage
-    ? `http://localhost:5000${profile.profileImage}`
+    ? (profile.profileImage.startsWith("http") || profile.profileImage.startsWith("data:")
+        ? profile.profileImage
+        : `${API_BASE}${profile.profileImage.startsWith('/') ? '' : '/'}${profile.profileImage}`)
     : null;
 
   const roleColor = {

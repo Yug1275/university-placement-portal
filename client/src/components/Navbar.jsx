@@ -9,7 +9,9 @@ function Navbar() {
   const location = useLocation();
 
   const imageUrl = user?.profileImage
-    ? (user.profileImage.startsWith("http") ? user.profileImage : `http://localhost:5000${user.profileImage.startsWith('/') ? '' : '/'}${user.profileImage}`)
+    ? (user.profileImage.startsWith("http") || user.profileImage.startsWith("data:") 
+        ? user.profileImage 
+        : `${import.meta.env.VITE_API_URL ? import.meta.env.VITE_API_URL.replace("/api", "") : "http://localhost:5000"}${user.profileImage.startsWith('/') ? '' : '/'}${user.profileImage}`)
     : null;
 
   const isActive = (path) => location.pathname === path;
