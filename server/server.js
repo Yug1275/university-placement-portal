@@ -7,6 +7,7 @@ const jobRoutes = require("./routes/jobRoutes");
 const applicationRoutes = require("./routes/applicationRoutes");
 const adminRoutes = require("./routes/adminRoutes");
 const profileRoutes = require("./routes/profileRoutes");
+const otpRoutes = require("./routes/otpRoutes");
 const path = require("path");
 
 dotenv.config();
@@ -29,6 +30,7 @@ app.use("/api/applications", applicationRoutes);
 app.use("/api/admin", adminRoutes);
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 app.use("/api/profile", profileRoutes);
+app.use("/api/otp", otpRoutes);
 
 
 // Test route

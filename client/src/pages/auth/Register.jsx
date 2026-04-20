@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import API from "../../services/api";
 import { useNavigate, useSearchParams } from "react-router-dom";
 
@@ -16,11 +16,78 @@ function Register() {
     skills: "",
   });
 
+  const [otp, setOtp] = useState("");
+  const [otpSent, setOtpSent] = useState(false);
+  const [otpVerified, setOtpVerified] = useState(false);
+  const [otpLoading, setOtpLoading] = useState(false);
+  const [otpError, setOtpError] = useState("");
+  const [resendTimer, setResendTimer] = useState(0);
+  const [loading, setLoading] = useState(false);
+
   const navigate = useNavigate();
+
+  useEffect(() => {
+    let timer;
+    if (resendTimer > 0) {
+      timer = setInterval(() => {
+        setResendTimer((prev) => prev - 1);
+      }, 1000);
+    }
+    return () => clearInterval(timer);
+  }, [resendTimer]);
+
+  const startTimer = () => {
+    setResendTimer(300);
+  };
+
+  const handleSendOTP = async () => {
+    if (!form.email) {
+      setOtpError("Please enter your email address first.");
+      return;
+    }
+    setOtpLoading(true);
+    setOtpError("");
+    try {
+      await API.post("/otp/send", { email: form.email });
+      setOtpSent(true);
+      startTimer();
+    } catch (err) {
+      setOtpError(err?.response?.data?.message || "Failed to send OTP.");
+    }
+    setOtpLoading(false);
+  };
+
+  const handleVerifyOTP = async () => {
+    if (otp.length !== 6) {
+      setOtpError("Please enter a 6-digit OTP.");
+      return;
+    }
+    setOtpLoading(true);
+    setOtpError("");
+    try {
+      await API.post("/otp/verify", { email: form.email, otp });
+      setOtpVerified(true);
+      setOtpError("");
+      setOtpSent(false); // Hide OTP section after verification
+    } catch (err) {
+      setOtpError(err?.response?.data?.message || "Invalid OTP. Please try again.");
+    }
+    setOtpLoading(false);
+  };
+
+  const handleResendOTP = () => {
+    setOtp("");
+    setOtpError("");
+    handleSendOTP();
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    if (!otpVerified) {
+      alert("Please verify your email first.");
+      return;
+    }
+    setLoading(true);
     try {
       const payload = {
         ...form,
@@ -38,6 +105,13 @@ function Register() {
     } catch (err) {
       alert(err?.response?.data?.message || "Error");
     }
+    setLoading(false);
+  };
+
+  const formatTime = (seconds) => {
+    const minutes = Math.floor(seconds / 60);
+    const remainingSeconds = seconds % 60;
+    return `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
   };
 
   return (
@@ -45,12 +119,12 @@ function Register() {
       <form onSubmit={handleSubmit} className="register-card">
         <h2 className="register-title">Create Account</h2>
 
-        {/* Role Selector */}
         {!hideRoleSelection && (
           <select
             className="register-input"
             value={form.role}
             onChange={(e) => setForm({ ...form, role: e.target.value })}
+            disabled={otpSent || otpVerified}
           >
             <option value="student">Student</option>
             <option value="company">Company</option>
@@ -64,6 +138,7 @@ function Register() {
           className="register-input"
           value={form.name}
           onChange={(e) => setForm({ ...form, name: e.target.value })}
+          disabled={otpSent || otpVerified}
         />
 
         <input
@@ -73,7 +148,52 @@ function Register() {
           className="register-input"
           value={form.email}
           onChange={(e) => setForm({ ...form, email: e.target.value })}
+          disabled={otpSent || otpVerified}
         />
+
+        {otpVerified ? (
+          <p className="otp-success">✓ Email verified</p>
+        ) : !otpSent ? (
+          <button
+            type="button"
+            className="otp-send-btn"
+            onClick={handleSendOTP}
+            disabled={otpLoading}
+          >
+            {otpLoading ? "Sending..." : "Send OTP"}
+          </button>
+        ) : null}
+
+        {otpSent && (
+          <div className="otp-section">
+            <label className="otp-label">Enter OTP sent to {form.email}</label>
+            <input
+              type="text"
+              maxLength="6"
+              inputMode="numeric"
+              className="otp-input"
+              value={otp}
+              onChange={(e) => setOtp(e.target.value)}
+            />
+            <button
+              type="button"
+              className="otp-verify-btn"
+              onClick={handleVerifyOTP}
+              disabled={otpLoading}
+            >
+              {otpLoading ? "Verifying..." : "Verify OTP"}
+            </button>
+            {resendTimer > 0 ? (
+              <p className="otp-timer">Resend OTP in {formatTime(resendTimer)}</p>
+            ) : (
+              <button type="button" className="otp-resend-link" onClick={handleResendOTP}>
+                Resend OTP
+              </button>
+            )}
+          </div>
+        )}
+        
+        {otpError && <p className="otp-error">{otpError}</p>}
 
         <input
           type="password"
@@ -84,9 +204,6 @@ function Register() {
           onChange={(e) => setForm({ ...form, password: e.target.value })}
         />
 
-        
-
-        {/*  Student-only fields */}
         {form.role === "student" && (
           <>
             <input
@@ -98,20 +215,21 @@ function Register() {
               className="register-input"
               value={form.cgpa}
               onChange={(e) => setForm({ ...form, cgpa: e.target.value })}
+              disabled={otpSent || otpVerified}
             />
-
             <input
               type="text"
               placeholder="Skills (e.g. React, Node, MongoDB)"
               className="register-input"
               value={form.skills}
               onChange={(e) => setForm({ ...form, skills: e.target.value })}
+              disabled={otpSent || otpVerified}
             />
           </>
         )}
 
-        <button type="submit" className="register-button">
-          Register
+        <button type="submit" className="register-button" disabled={!otpVerified || loading}>
+          {loading ? "Registering..." : "Register"}
         </button>
       </form>
     </div>

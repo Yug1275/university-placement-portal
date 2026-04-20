@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || "https://university-placement-portal-production.up.railway.app/api",
+  baseURL: "/api",
 });
 
 // Attach token automatically
