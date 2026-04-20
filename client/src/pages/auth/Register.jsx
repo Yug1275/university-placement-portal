@@ -215,7 +215,6 @@ function Register() {
               className="register-input"
               value={form.cgpa}
               onChange={(e) => setForm({ ...form, cgpa: e.target.value })}
-              disabled={otpSent || otpVerified}
             />
             <input
               type="text"
@@ -223,7 +222,6 @@ function Register() {
               className="register-input"
               value={form.skills}
               onChange={(e) => setForm({ ...form, skills: e.target.value })}
-              disabled={otpSent || otpVerified}
             />
           </>
         )}
